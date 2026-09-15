@@ -1,55 +1,67 @@
--- MySQL dump 10.13  Distrib 8.0.42, for Win64 (x86_64)
---
--- Host: 127.0.0.1    Database: empleados_db
--- ------------------------------------------------------
--- Server version	8.0.42
+-- ============================================================
+-- BASE DE DATOS: Sistema de Gestión de Empleados
+-- Proyecto: empleados-app
+-- Motor: MySQL 8.0
+-- ============================================================
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
-/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
-/*!40103 SET TIME_ZONE='+00:00' */;
-/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
---
--- Table structure for table `empleados`
---
+-- Crear la base de datos si no existe
+CREATE DATABASE IF NOT EXISTS empleados_db;
 
-DROP TABLE IF EXISTS `empleados`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `empleados` (
-  `id` int NOT NULL AUTO_INCREMENT,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(100) NOT NULL,
-  `documento` varchar(50) NOT NULL,
-  `correo` varchar(100) NOT NULL,
-  `telefono` varchar(50) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
+-- Seleccionar la base de datos
+USE empleados_db;
 
---
--- Dumping data for table `empleados`
---
 
-LOCK TABLES `empleados` WRITE;
-/*!40000 ALTER TABLE `empleados` DISABLE KEYS */;
-INSERT INTO `empleados` VALUES (1,'Juan','Perez','123','juan@gmail.com','3001111111'),(2,'Maria','Gomez','456','maria@gmail.com','3002222222'),(3,'Carlos','Lopez','789','carlos@gmail.com','3003333333'),(4,'Juan','Almendra','1003456789','Juanalmendra3700@gmail.com','3254565674');
-/*!40000 ALTER TABLE `empleados` ENABLE KEYS */;
-UNLOCK TABLES;
-/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+-- ============================================================
+-- CONFIGURACIÓN INICIAL DE MYSQL
+-- ============================================================
 
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+SET FOREIGN_KEY_CHECKS = 0;
 
--- Dump completed on 2026-09-15 15:03:27
+
+-- ============================================================
+-- TABLA: empleados
+-- ============================================================
+
+DROP TABLE IF EXISTS empleados;
+
+CREATE TABLE empleados (
+    id INT NOT NULL AUTO_INCREMENT,
+    nombre VARCHAR(100) NOT NULL,
+    apellido VARCHAR(100) NOT NULL,
+    documento VARCHAR(50) NOT NULL,
+    correo VARCHAR(100) NOT NULL,
+    telefono VARCHAR(50) NOT NULL,
+
+    PRIMARY KEY (id)
+
+) ENGINE=InnoDB
+  DEFAULT CHARSET=utf8mb4
+  COLLATE=utf8mb4_0900_ai_ci;
+
+
+-- ============================================================
+-- DATOS INICIALES
+-- ============================================================
+
+INSERT INTO empleados
+    (nombre, apellido, documento, correo, telefono)
+VALUES
+    ('Juan', 'Perez', '1000000001', 'juan.perez@example.com', '3000000001'),
+    ('Maria', 'Gomez', '1000000002', 'maria.gomez@example.com', '3000000002'),
+    ('Carlos', 'Lopez', '1000000003', 'carlos.lopez@example.com', '3000000003'),
+    ('Ana', 'Martinez', '1000000004', 'ana.martinez@example.com', '3000000004');
+
+
+-- ============================================================
+-- RESTAURAR CONFIGURACIÓN
+-- ============================================================
+
+SET FOREIGN_KEY_CHECKS = 1;
+
+
+-- ============================================================
+-- VERIFICACIÓN
+-- ============================================================
+
+SELECT * FROM empleados;
