@@ -3,7 +3,8 @@ const express = require('express');
 const router = express.Router();
 
 const empleadosController = require('../controllers/empleadosController');
-
+// Página principal 
+router.get('/', (req, res) => { res.redirect('/empleados'); });
 // Listar empleados
 router.get('/empleados', empleadosController.listar);
 
